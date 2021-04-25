@@ -52,7 +52,7 @@ class BookingController extends GetxController {
                   int hourNumber = int.parse(hourController.text);
                   tablesController.loadedTables[tableNumber].schedule[hourNumber] = !tablesController.loadedTables[tableNumber].schedule[hourNumber];
                   try{
-                    patchTables(tableNumber, hourNumber);
+                    tablesController.patchTables(tableNumber, hourNumber);
                   }
                   catch(e){
                     Navigator.pop(context);
@@ -66,35 +66,4 @@ class BookingController extends GetxController {
       );;
     },);
   }
-
-  Future<void> patchTables(int table, int hour) async {
-
-    String str_hour;
-    Map<int, String> scheduleMap = {
-      1:'first_hour',
-      2:'second_hour',
-      3:'third_hour',
-      4:'fourth_hour',
-      5:'fifth_hour',
-      6:'sixth_hour',
-      7:'seventh_hour',
-      8:'eighth_hour',
-    };
-
-    for (int i in scheduleMap.keys){
-      if(i == hour) {
-        str_hour = scheduleMap[i];
-        print(str_hour);
-        print(table.toString());
-        break;
-      }
-    }
-
-    final url = 'https://traktirdav-default-rtdb.firebaseio.com/tables/${tablesController.loadedTables[table + 1].id}.json';
-    var response = await http.patch(url, body: jsonEncode({
-      str_hour: tablesController.loadedTables[table + 1].schedule[hour],
-    }));
-
-  }
-  
 }
