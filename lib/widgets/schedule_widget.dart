@@ -12,6 +12,7 @@ class ScheduleTable extends StatefulWidget {
   _ScheduleTableState createState() => _ScheduleTableState();
 }
 
+
 class _ScheduleTableState extends State<ScheduleTable> {
   List<TableRow> tableRows = [];
 
@@ -36,6 +37,11 @@ class _ScheduleTableState extends State<ScheduleTable> {
       tableRows.add(
         new TableRow(
           children: <Widget>[
+            // Container(
+            //   child: Text('${i+1}'),
+            //   alignment: Alignment.center,
+            //   margin: EdgeInsets.all(5),
+            // ),
             Container(
               child: Text('$currentHour:00 - ${currentHour + 1}:00'),
               alignment: Alignment.center,
@@ -62,6 +68,8 @@ class _ScheduleTableState extends State<ScheduleTable> {
 
   @override
   Widget build(BuildContext context) {
+
+    int i = 1;
 
     tableRows = [];
     createTableRows();

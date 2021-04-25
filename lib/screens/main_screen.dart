@@ -109,8 +109,8 @@ class _MainScreenState extends State<MainScreen> {
                     RaisedButton(
                       child: Text('Book a table'),
                       onPressed: () {
-                        tablesController.loadedTables[3].schedule[2] = !tablesController.loadedTables[3].schedule[2];
-                        bookingController.test(tablesController.loadedTables[3],);
+                        bookingController.book(context);
+                        initState();
                       },
                     ),
                   ]),

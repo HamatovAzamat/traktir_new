@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+
+import '../controllers/booking_controller.dart';
+import '../controllers/tables_controller.dart';
 
 class Booking extends StatefulWidget {
   @override
@@ -6,24 +11,10 @@ class Booking extends StatefulWidget {
 }
 
 class _BookingState extends State<Booking> {
+  final bookingController = Get.put(BookingController());
+
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(15),
-      child: Column(
-        children: <Widget>[
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Table\'s number'
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-                labelText: 'Time'
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

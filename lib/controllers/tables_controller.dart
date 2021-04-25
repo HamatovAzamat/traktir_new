@@ -40,9 +40,9 @@ class TablesController extends GetxController{
         );
       });
       //loadedTables = rawTables;
-      for (int i = 0; i < loadedTables.length; i++) {
-        print('First tables schedule for a $i hour is ${loadedTables[i].id}');
-      }
+      /*for (int i = 0; i < loadedTables.length; i++) {
+        print('$i tables id is ${loadedTables[i].id}');
+      }*/
     }
     catch (error){
       throw error;
