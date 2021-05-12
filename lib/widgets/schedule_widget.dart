@@ -37,11 +37,11 @@ class _ScheduleTableState extends State<ScheduleTable> {
       tableRows.add(
         new TableRow(
           children: <Widget>[
-            // Container(
-            //   child: Text('${i+1}'),
-            //   alignment: Alignment.center,
-            //   margin: EdgeInsets.all(5),
-            // ),
+            Container(
+              child: Text('${i+1}'),
+              alignment: Alignment.center,
+              margin: EdgeInsets.all(5),
+            ),
             Container(
               child: Text('$currentHour:00 - ${currentHour + 1}:00'),
               alignment: Alignment.center,
@@ -80,6 +80,8 @@ class _ScheduleTableState extends State<ScheduleTable> {
         columnWidths: const <int, TableColumnWidth>{
           0: IntrinsicColumnWidth(),
           1: IntrinsicColumnWidth(),
+          2: IntrinsicColumnWidth(),
+          3: IntrinsicColumnWidth(),
         },
         children: tableRows,
       ),
