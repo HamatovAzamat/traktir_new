@@ -50,71 +50,78 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-        onRefresh: () => tablesController.getAllTables(authController.token),
-        child: _isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.all(15),
-                    height: 290,
-                    alignment: Alignment.topCenter,
-                    child: PageView.builder(
-                      allowImplicitScrolling: true,
-                      /*addAutomaticKeepAlives: false,
-                      separatorBuilder: (context, i) {
-                        return SizedBox(
-                          width: 5,
-                        );
-                      },*/
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (ctx, i) {
-                        return Card(
-                          shadowColor: Colors.white,
-                          elevation: 10,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-                                Text('${i + 1} tables schedule'),
-                                ScheduleTable(i),
-                              ],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text('Some table'),
+        backgroundColor: Colors.black,
+      ),
+      body: RefreshIndicator(
+          onRefresh: () => tablesController.getAllTables(authController.token),
+          child: _isLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(15),
+                      height: 290,
+                      alignment: Alignment.topCenter,
+                      child: PageView.builder(
+                        allowImplicitScrolling: true,
+                        /*addAutomaticKeepAlives: false,
+                        separatorBuilder: (context, i) {
+                          return SizedBox(
+                            width: 5,
+                          );
+                        },*/
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        itemBuilder: (ctx, i) {
+                          return Card(
+                            shadowColor: Colors.white,
+                            elevation: 10,
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Text('${i + 1} tables schedule'),
+                                  ScheduleTable(i),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        RaisedButton(
-                          child: Text('Update'),
-                          onPressed: () {
-                            setState(() {
-                              _isLoading = true;
-                            });
-                            tablesController.updateTables(authController.token).then((value) => setState(() {
-                              _isLoading = false;
-                            })
-                            );
-                          },
-                        ),
-                        RaisedButton(
-                          child: Text('Book a table'),
-                          onPressed: () {
-                            bookingController.book(context);
-                          },
-                        ),
-                      ]),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          RaisedButton(
+                            child: Text('Update'),
+                            onPressed: () {
+                              setState(() {
+                                _isLoading = true;
+                              });
+                              tablesController.updateTables(authController.token).then((value) => setState(() {
+                                _isLoading = false;
+                              })
+                              );
+                            },
+                          ),
+                          RaisedButton(
+                            child: Text('Book a table'),
+                            onPressed: () {
+                              bookingController.book(context);
+                            },
+                          ),
+                        ]),
 
-                ],
+                  ],
 
-              ),
-      );
+                ),
+        ),
+    );
   }
 }

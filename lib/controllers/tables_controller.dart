@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,11 +22,6 @@ class TablesController extends GetxController {
 
   void clear() {
     loadedTables.clear();
-  }
-
-  Future<void> freeAllTable() async {
-    final url = 'https://traktirdav-default-rtdb.firebaseio.com/tables.json';
-
   }
 
   Future<void> updateTables(String token) async {

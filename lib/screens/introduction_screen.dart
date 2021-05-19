@@ -7,7 +7,7 @@ class IntroductionScreen extends StatelessWidget {
       slivers: <Widget>[
         SliverAppBar(
           flexibleSpace: FlexibleSpaceBar(
-            background: Image(image: AssetImage('assets/stamp.png')),
+            background: Image.asset('assets/stamp.png'),
           ),
         ),
         SliverList(

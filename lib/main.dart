@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traktir_davl/screens/auth_screen.dart';
+import 'package:traktir_davl/screens/booking_screen.dart';
+import 'package:traktir_davl/widgets/app_drawer.dart';
 
 import 'screens/information_screen.dart';
 import 'screens/introduction_screen.dart';
-import 'screens/main_screen.dart';
+import 'screens/splash_screen.dart';
 import 'controllers/auth_controller.dart';
 
 void main() => runApp(MyApp());
@@ -27,8 +29,8 @@ class _MyAppState extends State<MyApp> {
 
   List<Widget> _screens = [
     IntroductionScreen(),
-    MainScreen(),
-    AuthScreen(),
+    BookingScreen(),
+    InformationScreen()
   ];
   List<String> _screenTitle = [
     'Главная',
@@ -49,16 +51,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Traktir Dvl',
       home: GetBuilder(
         init: AuthController(),
         builder: (authController) {
           return (!authController.checkAuth)
-              ? AuthScreen()
+              ? FutureBuilder(future: authController.tryAutoLogin(), builder: (ctx, snapshot) => snapshot.connectionState == ConnectionState.waiting ? SplashScreen() : AuthScreen())
               : Scaffold(
+                  drawer: AppDrawer(),
                   backgroundColor: Colors.black,
                   appBar: AppBar(
-                    backgroundColor: Colors.grey[700],
+                    backgroundColor: Colors.black,
                     title: Text(
                       appBarTitle,
                       style: TextStyle(
@@ -96,7 +100,7 @@ class _MyAppState extends State<MyApp> {
                       currentIndex: _selectedPageIndex,
                     ),
                   ),
-                );
+              );
         },
       ),
     );
